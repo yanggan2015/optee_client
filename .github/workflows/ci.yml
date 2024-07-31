@@ -18,7 +18,7 @@ jobs:
         run: |
           set -e -v
           mkdir out-cmake-aarch64 && cd out-cmake-aarch64
-          PKG_CONFIG=aarch64-linux-gnu-pkg-config cmake .. -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc
+          PKG_CONFIG=aarch64-linux-gnu-pkg-config cmake .. -DCMAKE_C_COMPILER=aarch64-openeuler-linux-gnu-gcc
           make -j
       - name: armhf with cmake
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: |
           set -e -v
           mkdir out-cmake-aarch64 && cd out-cmake-aarch64
-          PKG_CONFIG=aarch64-linux-gnu-pkg-config cmake .. -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc
+          PKG_CONFIG=aarch64-linux-gnu-pkg-config cmake .. -DCMAKE_C_COMPILER=aarch64-openeuler-linux-gnu-gcc
           make -j
       - name: armhf with cmake
         run: |

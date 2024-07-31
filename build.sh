@@ -1,0 +1,3 @@
+#! /bin/bash
+
+make CROSS_COMPILE=aarch64-openeuler-linux-gnu- CFG_TEE_CLIENT_LOG_LEVEL=4 CFG_TEE_SUPP_LOG_LEVEL=4 CFG_TA_TEST_PATH=n CFG_TEE_CLIENT_LOAD_PATH=/data

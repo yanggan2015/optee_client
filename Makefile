@@ -19,7 +19,7 @@ sbindir ?= $(SBINDIR)
 libdir ?= $(LIBDIR)
 includedir ?= $(INCLUDEDIR)
 
-WITH_TEEACL ?= 1
+WITH_TEEACL ?= 0
 
 .PHONY: all build build-libteec build-libckteec build-libseteec \
 	build-libteeacl install copy_export clean cscope \
