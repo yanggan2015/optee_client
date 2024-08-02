@@ -1,0 +1,40 @@
+#! /bin/bash
+#
+#Contact author: email to dengqiang@phytium.com.cn
+#
+HOST_ARCH=$(echo $(arch))
+
+if [ "$HOST_ARCH" = "aarch64" ];then
+	HOST_CROSS=
+else
+	HOST_CROSS=aarch64-openeuler-linux-gnu-
+fi
+
+if [ $CROSS_COMPILE64 ];then
+	HOST_CROSS=$CROSS_COMPILE64
+fi
+
+rm -rf out
+
+if [ "$1" = "debug" ];then
+    echo "make CROSS_COMPILE=$HOST_CROSS CFG_TEE_CLIENT_LOG_LEVEL=4 CFG_TEE_SUPP_LOG_LEVEL=4 CFG_TA_TEST_PATH=n CFG_TEE_CLIENT_LOAD_PATH=/data"
+	make CROSS_COMPILE=$HOST_CROSS CFG_TEE_CLIENT_LOG_LEVEL=4 CFG_TEE_SUPP_LOG_LEVEL=4 CFG_TA_TEST_PATH=n CFG_TEE_CLIENT_LOAD_PATH=/data
+elif [ "$1" = "clean" ];then
+	exit 0
+else
+	make CROSS_COMPILE=$HOST_CROSS CFG_TA_TEST_PATH=n CFG_TEE_CLIENT_LOAD_PATH=/data
+fi
+
+rm -rf ../out/data/bin
+mkdir -p ../out/data/bin
+
+rm -rf ../out/data/lib
+mkdir -p ../out/data/lib
+
+rm -rf ../out/data/optee_armtz
+mkdir -p ../out/data/optee_armtz
+
+cp out/tee-supplicant/tee-supplicant ../out/data/bin
+cp -a out/export/usr/lib/*.so* ../out/data/lib
+cp -a out/export ../out/data/link
+cp env.source ../out/data
